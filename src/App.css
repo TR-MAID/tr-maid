@@ -1,0 +1,17 @@
+.App {
+  min-width: 1000px;
+  min-height: 800px;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  background-color: #181818;
+  border: solid 1px black;
+  margin: auto;
+  cursor: default;
+}
+
+.App * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
