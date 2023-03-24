@@ -1,11 +1,11 @@
 .App {
-  min-width: 1200px;
+  min-width: 1440px;
   min-height: 800px;
+  height: 100vh;
   color: white;
   font-size: 30px;
   text-align: center;
   background-color: #181818;
-  border: solid 1px black;
   margin: auto;
   cursor: default;
 }

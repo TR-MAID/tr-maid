@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { ReactComponent as Frame } from '../assets/title-frame.svg';
-import { ReactComponent as Title } from '../assets/title.svg';
+import { ReactComponent as Frame } from '../assets/title-frame2.svg';
+import { ReactComponent as Title } from '../assets/title2.svg';
 import { FONTS } from '../config/constants';
 
 const MainTitleContainer = styled.div`
   margin-top: 50px;
-  height: 635px;
+  height: 735.47px;
   position: relative;
   > * {
     position: absolute;
@@ -15,7 +15,7 @@ const MainTitleContainer = styled.div`
 
 const blink = keyframes`
     0% {opacity: 1;}
-    50%{opacity: 0.5;}
+    50%{opacity: 0.3;}
   100% {opacity: 1;}
 `;
 
@@ -33,14 +33,14 @@ const TitleText = styled.h2`
   font-family: ${FONTS.TITLE};
   font-style: normal;
   font-weight: 400;
-  font-size: 60px;
+  font-size: 65px;
 `;
 
 const MainTitle = () => {
   return (
     <>
       <MainTitleContainer>
-        <Frame />
+        <Frame width="1400px" />
         <TitleFrame>
           <Title />
           <TitleText>

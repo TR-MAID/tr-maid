@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import MainTitle from './MainTitle';
 
 const MainContainer = styled.div`
-  width: 1000px;
-  padding: 0;
-  border: solid 1px white;
+  width: 1440px;
 `;
 
 const MainContents = () => {
