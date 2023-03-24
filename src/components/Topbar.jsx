@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FONTS } from '../config/constants';
 
 const TopbarContainer = styled.div`
   height: 50px;
@@ -12,7 +13,7 @@ const Title = styled.h1`
   margin: 0;
   font-style: normal;
   font-weight: 400;
-  font-family: 'Old English Text MT';
+  font-family: ${FONTS.TITLE};
   cursor: pointer;
 `;
 
