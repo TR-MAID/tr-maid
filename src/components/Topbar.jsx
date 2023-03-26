@@ -1,9 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { FONTS } from '../config/constants';
+import { COLORS, FONTS } from '../config/constants';
 
 const TopbarContainer = styled.div`
   height: 50px;
+  min-width: 1440px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  background-color: ${COLORS.BACKGROUND_BLACK};
 `;
 
 const Title = styled.h1`
@@ -18,10 +24,14 @@ const Title = styled.h1`
 `;
 
 function Topbar() {
+  const navigate = useNavigate();
+  const movePage = () => {
+    navigate('/');
+  };
   return (
     <>
       <TopbarContainer>
-        <Title>TalesRunner Maid Collaboration</Title>
+        <Title onClick={movePage}>TalesRunner Maid Collaboration</Title>
       </TopbarContainer>
     </>
   );
