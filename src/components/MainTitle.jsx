@@ -17,6 +17,12 @@ const MainTitleContainer = styled.div`
   }
 `;
 
+const FrameContainer = styled.div`
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 const blink = keyframes`
     0% {opacity: 1;}
     50%{opacity: 0.3;}
@@ -24,6 +30,10 @@ const blink = keyframes`
 `;
 
 const TitleFrame = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   cursor: pointer;
   &:hover {
     -webkit-animation: ${blink} 2s ease-in-out infinite alternate;
@@ -34,6 +44,10 @@ const TitleFrame = styled.div`
 
 const TitleText = styled.h2`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
   font-family: ${FONTS.TITLE};
   font-style: normal;
   font-weight: 400;
@@ -56,12 +70,14 @@ const MainTitle = () => {
         exit={{ opacity: 0 }}
       >
         <MainTitleContainer>
-          <Frame width="1400px" />
+          <FrameContainer>
+            <Frame width="1400px" styled={{ left: 0 }} />
+          </FrameContainer>
           <TitleFrame onClick={movePage}>
             <Title />
             <TitleText>
               TalseRunner
-              <br /> Maid Collaboration
+              <br /> Maid&nbsp;Collaboration
             </TitleText>
           </TitleFrame>
         </MainTitleContainer>

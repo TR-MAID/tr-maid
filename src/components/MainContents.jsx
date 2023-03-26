@@ -7,7 +7,7 @@ import MainPage from './MainPage';
 
 const MainContainer = styled.div`
   width: 1440px;
-  margin-top: 100px;
+  margin: 100px auto;
 `;
 
 const MainContents = () => {
