@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import MainTitle from './MainTitle';
 import MainPage from './MainPage';
+import DetailPage from './DetailPage';
 
 const MainContainer = styled.div`
   width: 1440px;
@@ -17,6 +18,7 @@ const MainContents = () => {
         <Routes>
           <Route path={'/'} element={<MainTitle />} />
           <Route path={'/main'} element={<MainPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
         </Routes>
       </AnimatePresence>
     </MainContainer>
