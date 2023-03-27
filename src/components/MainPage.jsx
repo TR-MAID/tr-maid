@@ -1,47 +1,102 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import test from '../assets/테런_고바_시호하루미호.png';
-import test2 from '../assets/테런_늍_시오넬.png';
-import test3 from '../assets/베라6.png';
+import history from '../common/history';
 import useScrollToTop from '../hooks/useScrollToTop';
+import { IMG_ARRAY, PARTICIPANTS } from '../config/constants';
+import NameFrame from '../assets/name-frame.svg';
+import { useNavigate } from 'react-router-dom';
 
-const T = styled.div`
+const MainPageFrame = styled.div`
   margin: 0 auto;
-  width: 1000px;
-  border: 1px solid white;
+  width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
+  overflow: hidden;
+  & > *:not(:first-of-type) {
+    margin: 300px 0 70px 0;
+  }
 `;
 
+const ImageContainer = styled.img`
+  margin: 100px 0 70px 0;
+  cursor: pointer;
+`;
+
+const TitleContainer = styled.div`
+  position: relative;
+  width: 517.19px;
+  height: 218.31px;
+  margin: 0 auto;
+`;
+
+const TextTitle = styled.div`
+  position: absolute;
+  left: 37.12%;
+  right: 36.97%;
+  top: 39.39%;
+  bottom: 44.57%;
+  width: 134px;
+  height: 35px;
+  font-family: 'NanumMyeongjo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+`;
+
+const TextId = styled.div`
+  position: absolute;
+  left: 28.62%;
+  right: 28.65%;
+  top: 60.01%;
+  bottom: 27.17%;
+  width: 221px;
+  height: 28px;
+  font-family: 'NanumMyeongjo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+`;
+
+let lastIndex = 0;
+
 const MainPage = () => {
+  const navigate = useNavigate();
+  const [imgNodes, setImgNodes] = useState([]);
+  const lastIndexRef = useRef(lastIndex);
+
   useScrollToTop();
 
-  const [imgs, setImgs] = useState([]);
+  const movePage = (index) => {
+    navigate(`/detail/${index}`);
+  };
 
   useEffect(() => {
-    const imgNodes = document.querySelectorAll('img');
-    setImgs(imgNodes);
+    const newImgNodes = document.querySelectorAll('img');
+    setImgNodes(newImgNodes);
+    lastIndexRef.current = 0;
   }, []);
 
   useEffect(() => {
-    if (imgs.length === 0) {
+    window.scrollTo(0, 0);
+
+    if (imgNodes.length === 0) {
       return;
     }
-
-    let index = 0;
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
+          console.log(entry);
           if (entry.isIntersecting) {
             entry.target.style.opacity = 1;
             observer.unobserve(entry.target);
-            index++;
-            if (index < imgs.length) {
-              observer.observe(imgs[index]);
+            lastIndexRef.current += 2;
+            lastIndex += 2;
+            if (lastIndexRef.current < imgNodes.length) {
+              observer.observe(imgNodes[lastIndexRef.current]);
+              observer.observe(imgNodes[lastIndexRef.current + 1]);
             }
           }
         });
@@ -49,8 +104,9 @@ const MainPage = () => {
       { threshold: 0.2 }
     );
 
-    observer.observe(imgs[index]);
-  }, [imgs]);
+    observer.observe(imgNodes[lastIndexRef.current]);
+    observer.observe(imgNodes[lastIndexRef.current + 1]);
+  }, [imgNodes]);
   return (
     <>
       <motion.div
@@ -59,23 +115,32 @@ const MainPage = () => {
         transition={{ duration: 2 }}
         exit={{ opacity: 0 }}
       >
-        <T>
-          <img
-            src={test}
-            width="800px"
-            style={{ opacity: 0, transition: 'all 1s' }}
-          />
-          <img
-            src={test2}
-            width="700px"
-            style={{ opacity: 0, transition: 'all 0.5s' }}
-          />
-          <img
-            src={test3}
-            width="700px"
-            style={{ opacity: 0, transition: 'all 0.5s' }}
-          />
-        </T>
+        <MainPageFrame>
+          {IMG_ARRAY.map((img, index) => (
+            <div key={index}>
+              <ImageContainer
+                onClick={(e) => {
+                  movePage(index);
+                }}
+                src={`${img}`}
+                style={{ opacity: 0, transition: `all 0.5s` }}
+                alt={`${PARTICIPANTS[index].NICKNAME}, ${PARTICIPANTS[index].ID}, ${PARTICIPANTS[index].CHARACTERS}`}
+              />
+
+              <TitleContainer>
+                <img
+                  src={`${NameFrame}`}
+                  style={{ opacity: 0, transition: `all 0.5s` }}
+                  alt={`닉네임(${PARTICIPANTS[index].NICKNAME}), 아이디(${PARTICIPANTS[index].ID})`}
+                />
+                <TextTitle>
+                  {Array.from(PARTICIPANTS[index].NICKNAME).join(' ')}
+                </TextTitle>
+                <TextId>{PARTICIPANTS[index].ID}</TextId>
+              </TitleContainer>
+            </div>
+          ))}
+        </MainPageFrame>
       </motion.div>
     </>
   );

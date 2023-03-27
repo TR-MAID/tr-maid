@@ -4,7 +4,6 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { ReactComponent as Frame } from '../assets/title-frame2.svg';
 import { ReactComponent as Title } from '../assets/title2.svg';
-
 import { FONTS } from '../config/constants';
 import useScrollToTop from '../hooks/useScrollToTop';
 
