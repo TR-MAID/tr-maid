@@ -76,7 +76,7 @@ const MainTitle = () => {
           <TitleFrame onClick={movePage}>
             <Title />
             <TitleText>
-              TalseRunner
+              TalesRunner
               <br /> Maid&nbsp;Collaboration
             </TitleText>
           </TitleFrame>
