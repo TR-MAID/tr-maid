@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  COLORS,
-  CSS_MIDDLE,
-  FONTS,
-  NOTION_URL,
-  TWITTER_URL,
-} from '../config/constants';
+import { COLORS, FONTS, NOTION_URL, TWITTER_URL } from '../config/constants';
 
 const FooterFrame = styled.footer`
   width: 100%;
@@ -29,6 +23,11 @@ const Button = styled.button`
   font-size: 18px;
   margin: 30px;
   cursor: pointer;
+  opacity: 0.5;
+  :hover {
+    opacity: 1;
+  }
+  transition: all 0.5s;
 `;
 
 const Footer = () => {
