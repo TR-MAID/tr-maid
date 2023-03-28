@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tr-maid/static/css/main.e2417942.css",
-    "main.js": "/tr-maid/static/js/main.4db668de.js",
+    "main.js": "/tr-maid/static/js/main.b006634f.js",
     "static/media/테런_늍_시오넬.png": "/tr-maid/static/media/테런_늍_시오넬.a9bccaad8cf55e738acc.png",
     "static/media/테런_장군_알.png": "/tr-maid/static/media/테런_장군_알.9d14dd2bcb180bf13936.png",
     "static/media/테런_달폴_라라.png": "/tr-maid/static/media/테런_달폴_라라.b707dac05a93128c2441.png",
@@ -26,10 +26,10 @@
     "static/media/name-frame.svg": "/tr-maid/static/media/name-frame.f85eeca470e86a8a7a4c691cd1bf2b88.svg",
     "index.html": "/tr-maid/index.html",
     "main.e2417942.css.map": "/tr-maid/static/css/main.e2417942.css.map",
-    "main.4db668de.js.map": "/tr-maid/static/js/main.4db668de.js.map"
+    "main.b006634f.js.map": "/tr-maid/static/js/main.b006634f.js.map"
   },
   "entrypoints": [
     "static/css/main.e2417942.css",
-    "static/js/main.4db668de.js"
+    "static/js/main.b006634f.js"
   ]
 }
