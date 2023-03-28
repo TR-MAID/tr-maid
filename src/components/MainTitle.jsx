@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { ReactComponent as Frame } from '../assets/title-frame2.svg';
 import { ReactComponent as Title } from '../assets/title2.svg';
-import { FONTS } from '../config/constants';
+import { FONTS, LOCALSTORAGE_INDEX } from '../config/constants';
 import useScrollToTop from '../hooks/useScrollToTop';
 
 const MainTitleContainer = styled.div`
@@ -59,6 +59,7 @@ const MainTitle = () => {
 
   const movePage = () => {
     navigate('/main');
+    localStorage.setItem(LOCALSTORAGE_INDEX, 0);
   };
   return (
     <>

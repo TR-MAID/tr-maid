@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import history from '../common/history';
 import useScrollToTop from '../hooks/useScrollToTop';
-import { IMG_ARRAY, PARTICIPANTS } from '../config/constants';
+import {
+  IMG_ARRAY,
+  LOCALSTORAGE_INDEX,
+  PARTICIPANTS,
+} from '../config/constants';
 import NameFrame from '../assets/name-frame.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +25,8 @@ const MainPageFrame = styled.div`
 const ImageContainer = styled.img`
   margin: 100px 0 70px 0;
   cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s;
 `;
 
 const TitleContainer = styled.div`
@@ -29,6 +34,8 @@ const TitleContainer = styled.div`
   width: 517.19px;
   height: 218.31px;
   margin: 0 auto;
+  opacity: 0;
+  transition: all 0.5s;
 `;
 
 const TextTitle = styled.div`
@@ -59,53 +66,71 @@ const TextId = styled.div`
   font-size: 24px;
 `;
 
-let lastIndex = 0;
+let index = 0;
 
 const MainPage = () => {
   const navigate = useNavigate();
   const [imgNodes, setImgNodes] = useState([]);
-  const lastIndexRef = useRef(lastIndex);
-
+  const [lastIndex, setLastIndex] = useState(0);
   useScrollToTop();
 
   const movePage = (index) => {
     navigate(`/detail/${index}`);
   };
 
+  const setObserver = (localIndex) => {
+    console.log(localIndex - 3, imgNodes[localIndex - 3]);
+    for (let i = 0; i < localIndex - 2; i++) {
+      console.dir(imgNodes[i].style);
+
+      imgNodes[i].style.opacity = 1;
+    }
+    index = localIndex - 2;
+  };
+
   useEffect(() => {
-    const newImgNodes = document.querySelectorAll('img');
+    const newImgNodes = document.querySelectorAll('.image');
     setImgNodes(newImgNodes);
-    lastIndexRef.current = 0;
+
+    index = 0;
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    return () => {
+      localStorage.setItem(LOCALSTORAGE_INDEX, lastIndex);
+    };
+  }, [lastIndex]);
 
+  useEffect(() => {
     if (imgNodes.length === 0) {
       return;
+    }
+
+    if (+localStorage.getItem(LOCALSTORAGE_INDEX) >= 3) {
+      setObserver(+localStorage.getItem(LOCALSTORAGE_INDEX));
     }
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
-          console.log(entry);
           if (entry.isIntersecting) {
             entry.target.style.opacity = 1;
             observer.unobserve(entry.target);
-            lastIndexRef.current += 2;
-            lastIndex += 2;
-            if (lastIndexRef.current < imgNodes.length) {
-              observer.observe(imgNodes[lastIndexRef.current]);
-              observer.observe(imgNodes[lastIndexRef.current + 1]);
+            index += 2;
+
+            if (index < imgNodes.length) {
+              observer.observe(imgNodes[index]);
+              observer.observe(imgNodes[index + 1]);
             }
           }
         });
+        setLastIndex(index);
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
-    observer.observe(imgNodes[lastIndexRef.current]);
-    observer.observe(imgNodes[lastIndexRef.current + 1]);
+    observer.observe(imgNodes[index]);
+    observer.observe(imgNodes[index + 1]);
   }, [imgNodes]);
   return (
     <>
@@ -123,14 +148,13 @@ const MainPage = () => {
                   movePage(index);
                 }}
                 src={`${img}`}
-                style={{ opacity: 0, transition: `all 0.5s` }}
                 alt={`${PARTICIPANTS[index].NICKNAME}, ${PARTICIPANTS[index].ID}, ${PARTICIPANTS[index].CHARACTERS}`}
+                className="image"
               />
 
-              <TitleContainer>
+              <TitleContainer className="image">
                 <img
                   src={`${NameFrame}`}
-                  style={{ opacity: 0, transition: `all 0.5s` }}
                   alt={`닉네임(${PARTICIPANTS[index].NICKNAME}), 아이디(${PARTICIPANTS[index].ID})`}
                 />
                 <TextTitle>
