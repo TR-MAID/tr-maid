@@ -46,7 +46,6 @@ const TextTitle = styled.div`
   bottom: 44.57%;
   width: 134px;
   height: 35px;
-  font-family: 'NanumMyeongjo';
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -60,7 +59,6 @@ const TextId = styled.div`
   bottom: 27.17%;
   width: 221px;
   height: 28px;
-  font-family: 'NanumMyeongjo';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

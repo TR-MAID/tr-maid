@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
 .App {
   min-width: 1440px;
   min-height: 800px;
@@ -8,4 +10,5 @@
   background-color: #181818;
   margin: auto;
   cursor: default;
+  font-family: 'Nanum Myeongjo', serif;
 }
