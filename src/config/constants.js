@@ -120,3 +120,7 @@ export const ORIGINAL_IMG_ARRAY = [
 ];
 
 export const LOCALSTORAGE_INDEX = 'index';
+
+export const TWITTER_URL = 'https://twitter.com/xpfjsgkqwkr';
+export const NOTION_URL =
+  'https://enshrined-christmas-daa.notion.site/846ec5c2e5e04abb952ba7105d848386';
