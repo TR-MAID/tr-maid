@@ -118,3 +118,5 @@ export const ORIGINAL_IMG_ARRAY = [
   originalImg17,
   originalImg18,
 ];
+
+export const LOCALSTORAGE_INDEX = 'index';
