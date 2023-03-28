@@ -3,12 +3,11 @@ import './App.css';
 import Footer from './components/Footer';
 import MainContents from './components/MainContents';
 import Topbar from './components/Topbar';
-import { PUBLIC_URL } from './config/constants';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter basename={PUBLIC_URL}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Topbar />
         <MainContents />
         <Footer />

@@ -37,8 +37,6 @@ import originalImg16 from '../assets/arts_original/테런_치봉_닥터헬, 엘�
 import originalImg17 from '../assets/arts_original/테런_파요_담연.png';
 import originalImg18 from '../assets/arts_original/테런_플리벨_셀리아.png';
 
-export const PUBLIC_URL = 'https://tr-maid.github.io/tr-maid/';
-
 export const COLORS = {
   BACKGROUND_BLACK: '#181818',
   WHITE: '#FFFFFF',
