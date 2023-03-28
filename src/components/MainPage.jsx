@@ -79,13 +79,11 @@ const MainPage = () => {
   };
 
   const setObserver = (localIndex) => {
-    console.log(localIndex - 3, imgNodes[localIndex - 3]);
-    for (let i = 0; i < localIndex - 2; i++) {
-      console.dir(imgNodes[i].style);
-
+    console.log(localIndex, imgNodes[localIndex]);
+    for (let i = 0; i < localIndex; i++) {
       imgNodes[i].style.opacity = 1;
     }
-    index = localIndex - 2;
+    index = localIndex;
   };
 
   useEffect(() => {
@@ -114,23 +112,23 @@ const MainPage = () => {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            console.log(entry.target);
             entry.target.style.opacity = 1;
             observer.unobserve(entry.target);
-            index += 2;
+            index += 1;
 
             if (index < imgNodes.length) {
               observer.observe(imgNodes[index]);
-              observer.observe(imgNodes[index + 1]);
             }
           }
         });
         setLastIndex(index);
       },
-      { threshold: 0.15 }
+      { threshold: 0.3 }
     );
 
     observer.observe(imgNodes[index]);
-    observer.observe(imgNodes[index + 1]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgNodes]);
   return (
     <>
