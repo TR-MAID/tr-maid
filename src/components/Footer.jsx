@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { COLORS, FONTS, NOTION_URL, TWITTER_URL } from '../config/constants';
 
@@ -31,11 +32,20 @@ const Button = styled.button`
 `;
 
 const Footer = () => {
+  const location = useLocation();
+  const footerRef = useRef(null);
+  useEffect(() => {
+    if (/\/detail\/\d{1,2}/.test(location.pathname)) {
+      footerRef.current.style.display = 'none';
+    } else {
+      footerRef.current.style.display = 'flex';
+    }
+  }, [location]);
   const openPage = (e, url) => {
     window.open(url, '_blank', 'noopener, noreferrer');
   };
   return (
-    <FooterFrame>
+    <FooterFrame ref={footerRef}>
       <Button title="트위터" onClick={(e) => openPage(e, TWITTER_URL)}>
         Twitter
       </Button>

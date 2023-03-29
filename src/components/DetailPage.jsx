@@ -20,6 +20,7 @@ const DetailPage = () => {
         <img
           src={ORIGINAL_IMG_ARRAY[params.id]}
           alt={`${PARTICIPANTS[params.id].NICKNAME}님의 원본 그림`}
+          // style={{ marginBottom: '100px' }}
         />
       </motion.div>
     </>

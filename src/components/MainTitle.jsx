@@ -47,7 +47,7 @@ const TitleText = styled.h2`
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  font-family: ${FONTS.TITLE};
+  font-family: '${FONTS.TITLE}';
   font-style: normal;
   font-weight: 400;
   font-size: 65px;

@@ -18,12 +18,11 @@ const MainPageFrame = styled.div`
   align-items: center;
   overflow: hidden;
   & > *:not(:first-of-type) {
-    margin: 300px 0 70px 0;
+    margin: 200px 0 100px 0;
   }
 `;
 
 const ImageContainer = styled.img`
-  margin: 100px 0 70px 0;
   cursor: pointer;
   opacity: 0;
   transition: all 0.5s;
@@ -33,7 +32,7 @@ const TitleContainer = styled.div`
   position: relative;
   width: 517.19px;
   height: 218.31px;
-  margin: 0 auto;
+  margin: 70px auto 0px auto;
   opacity: 0;
   transition: all 0.5s;
 `;
@@ -77,8 +76,6 @@ const MainPage = () => {
   };
 
   const setObserver = (localIndex) => {
-    console.log(localIndex, imgNodes[localIndex]);
-
     for (let i = 0; i < localIndex; i++) {
       imgNodes[i].style.opacity = 1;
     }
@@ -116,7 +113,6 @@ const MainPage = () => {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log(entry.target);
             entry.target.style.opacity = 1;
             observer.unobserve(entry.target);
             index += 1;
@@ -126,10 +122,9 @@ const MainPage = () => {
             }
           }
         });
-        console.log(index);
         setLastIndex(index);
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     observer.observe(imgNodes[index]);
