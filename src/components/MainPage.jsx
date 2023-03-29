@@ -78,10 +78,16 @@ const MainPage = () => {
 
   const setObserver = (localIndex) => {
     console.log(localIndex, imgNodes[localIndex]);
+
     for (let i = 0; i < localIndex; i++) {
       imgNodes[i].style.opacity = 1;
     }
-    index = localIndex;
+
+    if (localIndex === 38) {
+      index = localIndex - 1;
+    } else {
+      index = localIndex;
+    }
   };
 
   useEffect(() => {
@@ -120,6 +126,7 @@ const MainPage = () => {
             }
           }
         });
+        console.log(index);
         setLastIndex(index);
       },
       { threshold: 0.3 }
