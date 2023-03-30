@@ -43,7 +43,7 @@ export const COLORS = {
 };
 
 export const FONTS = {
-  TITLE: 'Old English Text MT',
+  TITLE: 'Old English Text MT, sans-serif',
   CONTENT: 'NanumMyeongjo',
 };
 
