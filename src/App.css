@@ -1,5 +1,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
-@import url(//db.onlinewebfonts.com/c/f3258385782c4c96aa24fe8b5d5f9782?family=Old+English+Text+MT);
+
+@font-face {
+  font-family: 'Old English Text MT';
+  src: url('./assets/font/OLD.ttf');
+}
 
 .App {
   min-width: 1440px;
